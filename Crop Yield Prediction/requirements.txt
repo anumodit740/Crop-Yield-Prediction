@@ -1,0 +1,11 @@
+streamlit
+catboost==1.2.8
+numpy
+pandas
+joblib==1.5.1
+optuna==4.3.0
+scikit-learn
+plotly
+matplotlib
+requests==2.32.3
+tqdm==4.67.1
