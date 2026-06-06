@@ -185,25 +185,4 @@ Predictions & Visualizations
 - **agriculture_2011-2020**: Contains data mapped to districts as per 2011 reorganization
 - These datasets cannot be directly merged without proper district mapping
 
-## 🤝 Contributing
 
-Contributions are welcome! Please:
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/improvement`)
-3. Commit changes (`git commit -am 'Add improvement'`)
-4. Push to branch (`git push origin feature/improvement`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 📧 Contact
-
-**Author**: Utkarsh5100  
-**GitHub**: https://github.com/Utkarsh5100
-
----
-
-**Last Updated**: June 2026  
-**Status**: Active Development
