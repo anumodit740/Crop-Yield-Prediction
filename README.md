@@ -13,7 +13,7 @@ A machine learning project that predicts agricultural crop yields in India using
 - [APIs Used](#apis-used)
 - [Key Features](#key-features)
 - [Technologies](#technologies)
-- [Tech Stack Visualization](#tech-stack-visualization)
+- [Architecture & Data Flow](#architecture--data-flow)
 - [Getting Started](#getting-started)
 - [Results & Visualizations](#results--visualizations)
 
@@ -170,84 +170,90 @@ Records: 10,000+
 - **Git/GitHub** - Version control
 - **Docker** - Containerization (optional)
 
-## 💡 Tech Stack Visualization
+## 💡 Architecture & Data Flow
 
+### System Architecture
+
+```mermaid
+graph TB
+    subgraph "Data Sources"
+        A1["📁 Raw Data<br/>CSV Files"]
+        A2["🌤️ Weather API<br/>Open-Meteo"]
+    end
+    
+    subgraph "Data Pipeline"
+        B["🔄 ETL Pipeline<br/>Pandas | NumPy | SQL"]
+    end
+    
+    subgraph "Processing"
+        C["🛠️ Feature Engineering<br/>Preprocessing | Scaling"]
+    end
+    
+    subgraph "Machine Learning"
+        D["🤖 Model Training<br/>CatBoost | XGBoost"]
+    end
+    
+    subgraph "Deployment"
+        E["📊 Dashboard<br/>Streamlit | Plotly"]
+    end
+    
+    A1 --> B
+    A2 --> B
+    B --> C
+    C --> D
+    D --> E
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    CROP YIELD PREDICTION                     │
-│                      Architecture Overview                    │
-└─────────────────────────────────────────────────────────────┘
 
-    ┌──────────────┐         ┌──────────────┐
-    │  Raw Data    │         │ Weather API  │
-    │  (CSV Files) │         │(Open-Meteo)  │
-    └──────┬───────┘         └──────┬───────┘
-           │                        │
-           │         ┌──────────────┘
-           │         │
-           ▼         ▼
-    ┌─────────────────────────────┐
-    │  DATA PIPELINE (ETL)        │
-    │  ┌───────────────────────┐  │
-    │  │ Pandas  │  NumPy      │  │
-    │  │ SQL     │  SQLAlchemy │  │
-    │  └───────────────────────┘  │
-    └──────────────┬───────────────┘
-                   │
-                   ▼
-    ┌─────────────────────────────┐
-    │  FEATURE ENGINEERING        │
-    │  ┌───────────────────────┐  │
-    │  │ Preprocessing         │  │
-    │  │ Feature Scaling       │  │
-    │  │ Temporal Features     │  │
-    │  └───────────────────────┘  │
-    └──────────────┬───────────────┘
-                   │
-                   ▼
-    ┌─────────────────────────────┐
-    │  MODEL TRAINING             │
-    │  ┌───────────────────────┐  │
-    │  │ CatBoost (Primary)    │  │
-    │  │ XGBoost, Scikit-learn │  │
-    │  │ Evaluation & Tuning   │  │
-    │  │ (96% Accuracy)        │  │
-    │  └───────────────────────┘  │
-    └──────────────┬───────────────┘
-                   │
-                   ▼
-    ┌─────────────────────────────┐
-    │  VISUALIZATION LAYER        │
-    │  ┌───────────────────────┐  │
-    │  │ Streamlit Dashboard   │  │
-    │  │ Matplotlib/Seaborn    │  │
-    │  │ Plotly Charts         │  │
-    │  └───────────────────────┘  │
-    └─────────────────────────────┘
+### Data Processing Pipeline
 
-┌─────────────────────────────────────────────────────────────┐
-│               DATA PROCESSING PIPELINE                       │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+graph LR
+    A["📥 Raw Data<br/>10,000+ records"] 
+    B["🧹 Clean & Preprocess<br/>Pandas | NumPy"]
+    C["📊 EDA<br/>Seaborn | Matplotlib"]
+    D["⚙️ Feature Engineering<br/>Weather Integration"]
+    E["✂️ Train/Test Split<br/>Scikit-learn"]
+    F["🎯 Model Training<br/>CatBoost | XGBoost"]
+    G["🔧 Hyperparameter Tuning<br/>GridSearchCV"]
+    H["📈 Evaluation<br/>MAE | RMSE | R²"]
+    I["🚀 Deploy<br/>Streamlit Dashboard"]
+    
+    A --> B --> C --> D --> E --> F --> G --> H --> I
+```
 
-Raw Data (CSV, 10,000+ records)
-    ↓ [Pandas]
-Data Cleaning & Missing Value Imputation
-    ↓ [NumPy, SQL]
-Exploratory Data Analysis (EDA)
-    ↓ [Pandas, Seaborn, Matplotlib]
-Feature Engineering (Weather Integration)
-    ↓ [Pandas, NumPy]
-Data Splitting (Train/Test)
-    ↓ [Scikit-learn]
-Model Training (CatBoost, XGBoost)
-    ↓ [CatBoost, Scikit-learn]
-Hyperparameter Tuning & Validation
-    ↓ [GridSearchCV]
-Model Evaluation (MAE, RMSE, R²)
-    ↓ [Scikit-learn Metrics]
-Predictions & Deployment (Streamlit)
-    ↓ [Streamlit, Plotly]
-Interactive Dashboard & Visualizations
+### Model Architecture
+
+```mermaid
+graph TB
+    subgraph "Input Features"
+        I1["📍 Location Data<br/>District, Region"]
+        I2["🌾 Historical Data<br/>Area, Production"]
+        I3["🌡️ Weather Data<br/>Temperature, Precipitation"]
+        I4["📅 Temporal Features<br/>Season, Year"]
+    end
+    
+    subgraph "Feature Processing"
+        F1["Normalization"]
+        F2["Encoding"]
+        F3["Time-Series Aggregation"]
+    end
+    
+    subgraph "CatBoost Model"
+        M["Gradient Boosting<br/>Regression"]
+    end
+    
+    subgraph "Output"
+        O["🎯 Yield Prediction<br/>96% Accuracy"]
+    end
+    
+    I1 --> F1
+    I2 --> F2
+    I3 --> F3
+    I4 --> F1
+    F1 --> M
+    F2 --> M
+    F3 --> M
+    M --> O
 ```
 
 ## 🚀 Getting Started
@@ -264,7 +270,7 @@ Virtual Environment (recommended)
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/Utkarsh5100/Crop-Yield-Prediction.git
+git clone https://github.com/anumodit740/Crop-Yield-Prediction.git
 cd Crop-Yield-Prediction
 ```
 
@@ -315,28 +321,6 @@ streamlit run app.py
 | **Data Records** | 10,000+ |
 | **Temporal Coverage** | 20 years (2001-2020) |
 
-## 📝 Data Pipeline
-
-```
-Raw Data (CSV)
-    ↓
-Data Cleaning & Preprocessing (Pandas, NumPy)
-    ↓
-Exploratory Data Analysis (Seaborn, Matplotlib)
-    ↓
-Feature Engineering (Weather API integration)
-    ↓
-Train/Test Splitting (Scikit-learn)
-    ↓
-Model Training (CatBoost, XGBoost)
-    ↓
-Hyperparameter Tuning (GridSearchCV)
-    ↓
-Evaluation & Validation (Metrics)
-    ↓
-Predictions & Visualizations (Streamlit, Plotly)
-```
-
 ## 📌 Important Notes
 
 ### District Classification
@@ -378,8 +362,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 **Status**: Active Development  
 **Version**: 1.0  
 **Forecasting Accuracy**: 96%
-#   C r o p - Y i e l d - P r e d i c t i o n 
- 
- #   C r o p - Y i e l d - P r e d i c t i o n 
- 
- 
