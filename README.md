@@ -369,8 +369,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 📧 Contact
 
-**Author**: Utkarsh5100  
-**GitHub**: https://github.com/Utkarsh5100  
+**Author**: Anumodit Shukla    
 **Project**: Crop Yield Prediction System  
 
 ---
@@ -379,6 +378,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 **Status**: Active Development  
 **Version**: 1.0  
 **Forecasting Accuracy**: 96%
-#   C r o p - Y i e l d - P r e d i c t i o n  
- #   C r o p - Y i e l d - P r e d i c t i o n  
+#   C r o p - Y i e l d - P r e d i c t i o n 
+ 
+ #   C r o p - Y i e l d - P r e d i c t i o n 
+ 
  
